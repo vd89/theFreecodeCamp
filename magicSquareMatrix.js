@@ -1,6 +1,8 @@
 const magicSquareMatrix = (arr) => {
   let sum = 0,
-    sum2 = 0;
+    sum2 = 0,
+    row = 0,
+    col = 0;
   let n = arr.length;
   for (var i = 0; i < n; i++) {
     sum += arr[i][i];
@@ -14,25 +16,31 @@ const magicSquareMatrix = (arr) => {
       for (var j = 0; j < n; j++) {
         rowSum += arr[i][j];
       }
-      if (rowSum !== sum) {
-        console.log(`This is row = sum`);
-      } else {
-        console.log(`the sum of row is eqal to diagnol`);
-      }
+    }
+    if (rowSum == sum) {
+      row += sum;
+    } else {
+      row = 0;
     }
     for (var i = 0; i < n; i++) {
       var colSum = 0;
       for (var j = 0; j < n; j++) {
         colSum += arr[j][i];
       }
-      if (colSum !== sum) {
-        console.log(`The col is not equal to sum`);
-      } else {
-        console.log(`The col is Equal to sum`);
-      }
+    }
+    if (colSum == sum) {
+      col += sum;
+    } else {
+      col = 0;
     }
   } else {
     return false;
+  }
+
+  if (row == col && row == sum && row == sum2) {
+    console.log(`The given matrix is a magic square matrix`);
+  } else {
+    console.log(`The given matrix is not a magic square matrix`);
   }
 };
 
@@ -41,4 +49,4 @@ let a = [
   [9, 5, 1],
   [4, 3, 8],
 ];
-magicSquareMatrix(a)
+magicSquareMatrix(a);
